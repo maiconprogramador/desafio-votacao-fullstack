@@ -1,0 +1,10 @@
+<h2>Criar Nova Pauta</h2>
+<form [formGroup]="form" (ngSubmit)="criar()">
+    <label>Título:</label>
+    <input formControlName="titulo" required />
+    <label>Descrição:</label>
+    <textarea formControlName="descricao" required></textarea>
+    <button type="submit" [disabled]="form.invalid">Criar</button>
+</form>
+
+<div *ngIf="mensagem">{{ mensagem }}</div>

@@ -1,0 +1,10 @@
+<h2>Pautas disponíveis</h2>
+<ul>
+    <li *ngFor="let pauta of pautas">
+        <h3>{{ pauta.titulo }}</h3>
+        <p>{{ pauta.descricao }}</p>
+        <p>Status: <strong>{{ pauta.sessaoAberta ? 'Sessão Aberta' : 'Sessão Fechada' }}</strong></p>
+        <button *ngIf="!pauta.sessaoAberta" (click)="abrirSessao(pauta.id)">Abrir Sessão</button>
+        <button [disabled]="!pauta.sessaoAberta" (click)="votar(pauta.id)">Votar</button>
+    </li>
+</ul>
