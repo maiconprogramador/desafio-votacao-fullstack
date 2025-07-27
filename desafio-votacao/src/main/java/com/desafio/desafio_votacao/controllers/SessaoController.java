@@ -1,6 +1,7 @@
 package com.desafio.desafio_votacao.controllers;
 
 
+import com.desafio.desafio_votacao.dto.SessaoDTO;
 import com.desafio.desafio_votacao.model.Sessao;
 import com.desafio.desafio_votacao.services.SessaoService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -18,14 +19,14 @@ public class SessaoController {
 
     @PostMapping
     @Operation(summary = "Abrir uma nova sessão")
-    public ResponseEntity<?> abrirSessao(@RequestBody Sessao sessao) {
+    public ResponseEntity<?> abrirSessao(@RequestBody SessaoDTO sessaoDto) {
 
         try {
-            System.out.println("entrou: "+sessao.getInicio());
 
-            if (sessao.getFim() == null) {
-                sessao.setFim(sessao.getInicio().plusMinutes(1));
+            if (sessaoDto.getFim() == null) {
+                sessaoDto.setFim(sessaoDto.getInicio().plusMinutes(1));
             }
+            Sessao sessao = sessaoDto.toEntity();
             return ResponseEntity.ok(sessaoService.abrirSessao(sessao));
         } catch (IllegalStateException e) {
             return ResponseEntity.badRequest().body("Erro ao abrir sessão: " + e.getMessage());

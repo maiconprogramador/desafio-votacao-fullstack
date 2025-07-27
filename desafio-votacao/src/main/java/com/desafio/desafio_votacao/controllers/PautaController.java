@@ -1,5 +1,6 @@
 package com.desafio.desafio_votacao.controllers;
 
+import com.desafio.desafio_votacao.dto.PautaDTO;
 import com.desafio.desafio_votacao.model.Pauta;
 import com.desafio.desafio_votacao.services.PautaService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -29,8 +30,9 @@ public class PautaController {
 
     @PostMapping
     @Operation(summary = "Criar nova pauta")
-    public ResponseEntity<?> criar(@RequestBody Pauta pauta) {
+    public ResponseEntity<?> criar(@RequestBody PautaDTO pautaDto) {
         try {
+            Pauta pauta = pautaDto.toEntity();
             return ResponseEntity.ok(pautaService.criarPauta(pauta));
         } catch (IllegalStateException e) {
             return ResponseEntity.badRequest().body("Erro ao criar pauta: " + e.getMessage());

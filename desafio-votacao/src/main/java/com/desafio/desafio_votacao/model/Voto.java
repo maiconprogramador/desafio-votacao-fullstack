@@ -1,5 +1,6 @@
 package com.desafio.desafio_votacao.model;
 
+import com.desafio.desafio_votacao.utils.VotoEnum;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -50,5 +51,9 @@ public class Voto {
 
     public void setSessao(Sessao sessao) {
         this.sessao = sessao;
+    }
+
+    public VotoEnum getVotoEnum() {
+        return Boolean.TRUE.equals(this.voto) ? VotoEnum.SIM : VotoEnum.NAO;
     }
 }
