@@ -1,0 +1,20 @@
+<h1 mat-dialog-title>{{ data?.id ? 'Editar Pauta' : 'Nova Pauta' }}</h1>
+
+<div mat-dialog-content [formGroup]="pautaForm">
+  <mat-form-field appearance="fill" class="w-100">
+    <mat-label>Título</mat-label>
+    <input matInput formControlName="titulo" />
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="w-100">
+    <mat-label>Descrição</mat-label>
+    <textarea matInput formControlName="descricao" rows="4"></textarea>
+  </mat-form-field>
+</div>
+
+<div mat-dialog-actions align="end">
+  <button mat-button (click)="cancelar()">Cancelar</button>
+  <button mat-flat-button color="primary" (click)="salvar()" [disabled]="pautaForm.invalid">
+    Salvar
+  </button>
+</div>

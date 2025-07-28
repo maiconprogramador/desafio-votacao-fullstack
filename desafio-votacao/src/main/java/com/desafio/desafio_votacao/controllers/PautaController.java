@@ -46,4 +46,35 @@ public class PautaController {
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
+
+    @PutMapping("/{id}")
+    @Operation(summary = "Atualizar uma pauta existente")
+    public ResponseEntity<?> atualizar(@PathVariable Long id, @RequestBody PautaDTO pautaDto) {
+        try {
+            Pauta pautaAtualizada = pautaService.atualizarPauta(id, pautaDto.toEntity());
+            return ResponseEntity.ok(pautaAtualizada);
+        } catch (IllegalStateException e) {
+            return ResponseEntity.badRequest().body("Erro ao atualizar pauta: " + e.getMessage());
+        }
+    }
+
+    @DeleteMapping("/{id}")
+    @Operation(summary = "Deletar uma pauta por ID")
+    public ResponseEntity<?> deletar(@PathVariable Long id) {
+        try {
+            pautaService.deletarPauta(id);
+            return ResponseEntity.noContent().build();
+        } catch (IllegalStateException e) {
+            return ResponseEntity.badRequest().body("Erro ao deletar pauta: " + e.getMessage());
+        }
+    }
+
+    @GetMapping("/disponiveis")
+    public ResponseEntity<?> listarPautasSemSessao() {
+        try {
+            return ResponseEntity.ok(pautaService.buscarPautasSemSessao());
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Erro ao buscar pautas sem sessão: " + e.getMessage());
+        }
+    }
 }

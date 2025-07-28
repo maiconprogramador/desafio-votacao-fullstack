@@ -26,4 +26,25 @@ public class PautaService {
     public Optional<Pauta> buscarPorId(Long id) {
         return pautaRepository.findById(id);
     }
+
+    public Pauta atualizarPauta(Long id, Pauta novaPauta) {
+        return pautaRepository.findById(id)
+                .map(pauta -> {
+                    pauta.setTitulo(novaPauta.getTitulo());
+                    pauta.setDescricao(novaPauta.getDescricao());
+                    return pautaRepository.save(pauta);
+                })
+                .orElseThrow(() -> new IllegalStateException("Pauta não encontrada com id: " + id));
+    }
+
+    public void deletarPauta(Long id) {
+        if (!pautaRepository.existsById(id)) {
+            throw new IllegalStateException("Pauta não encontrada com id: " + id);
+        }
+        pautaRepository.deleteById(id);
+    }
+
+    public List<Pauta> buscarPautasSemSessao() {
+        return pautaRepository.findPautasSemSessao();
+    }
 }

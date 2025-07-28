@@ -1,0 +1,41 @@
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" class="full-width-table">
+
+    <!-- ID -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> ID Pauta</th>
+      <td mat-cell *matCellDef="let sessao"> {{ sessao.id }} </td>
+    </ng-container>
+
+    <!-- Início -->
+    <ng-container matColumnDef="titulo">
+      <th mat-header-cell *matHeaderCellDef> Titulo </th>
+      <td mat-cell *matCellDef="let sessao"> {{ sessao.titulo }} </td>
+    </ng-container>
+
+    <!-- Fim -->
+    <ng-container matColumnDef="descricao">
+      <th mat-header-cell *matHeaderCellDef> Descrição </th>
+      <td mat-cell *matCellDef="let sessao"> {{ sessao.descricao }} </td>
+    </ng-container>
+
+    <!-- Ações -->
+    <ng-container matColumnDef="acoes">
+      <th mat-header-cell *matHeaderCellDef> Ações </th>
+      <td mat-cell *matCellDef="let sessao">
+        <button mat-icon-button color="primary" (click)="editar(sessao)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button color="warn" (click)="deletar(sessao.id)">
+          <mat-icon>delete</mat-icon>
+        </button>
+        <button mat-icon-button color="warn" (click)="votar(sessao)">
+          <mat-icon>edit</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="colunas"></tr>
+    <tr mat-row *matRowDef="let row; columns: colunas;"></tr>
+  </table>
+</div>

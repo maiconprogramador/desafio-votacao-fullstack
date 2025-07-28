@@ -1,0 +1,36 @@
+<h2 mat-dialog-title>{{ modo === 'editar' ? 'Editar Sessão' : 'Criar Sessão' }}</h2>
+
+<mat-dialog-content [formGroup]="form">
+  <mat-form-field class="full-width" appearance="fill">
+    <mat-label>Início</mat-label>
+    <input matInput type="datetime-local" formControlName="inicio" />
+  </mat-form-field>
+
+  <mat-form-field class="full-width" appearance="fill">
+    <mat-label>Fim</mat-label>
+    <input matInput type="datetime-local" formControlName="fim" />
+  </mat-form-field>
+
+  <ng-container *ngIf="modo === 'criar'">
+    <mat-form-field class="full-width" appearance="fill">
+      <mat-label>Selecionar Pauta(s)</mat-label>
+      <mat-select formControlName="pautaIds">
+        <mat-option *ngFor="let pauta of pautasDisponiveis" [value]="pauta.id">
+          {{ pauta.titulo }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </ng-container>
+
+  <ng-container *ngIf="modo === 'editar'">
+    <mat-form-field class="full-width" appearance="fill" disabled>
+      <mat-label>Pauta</mat-label>
+      <input matInput [value]="data?.sessao.sessao.pauta.titulo" disabled />
+    </mat-form-field>
+  </ng-container>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="cancelar()">Cancelar</button>
+  <button mat-raised-button color="primary" (click)="salvar()">Salvar</button>
+</mat-dialog-actions>

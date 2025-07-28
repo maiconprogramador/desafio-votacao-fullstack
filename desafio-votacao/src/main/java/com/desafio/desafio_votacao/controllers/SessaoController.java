@@ -53,4 +53,26 @@ public class SessaoController {
             return ResponseEntity.badRequest().body("Erro ao buscar sessões com status: " + e.getMessage());
         }
     }
+
+    @PutMapping("/{id}")
+    @Operation(summary = "Atualizar uma sessão")
+    public ResponseEntity<?> atualizarSessao(@PathVariable Long id, @RequestBody SessaoDTO sessaoDto) {
+        try {
+            Sessao novaSessao = sessaoDto.toEntity();
+            return ResponseEntity.ok(sessaoService.atualizarSessao(id, novaSessao));
+        } catch (IllegalStateException e) {
+            return ResponseEntity.badRequest().body("Erro ao atualizar sessão: " + e.getMessage());
+        }
+    }
+
+    @DeleteMapping("/{id}")
+    @Operation(summary = "Deletar uma sessão")
+    public ResponseEntity<?> deletarSessao(@PathVariable Long id) {
+        try {
+            sessaoService.deletarSessao(id);
+            return ResponseEntity.ok().body("Sessão deletada com sucesso.");
+        } catch (IllegalStateException e) {
+            return ResponseEntity.badRequest().body("Erro ao deletar sessão: " + e.getMessage());
+        }
+    }
 }

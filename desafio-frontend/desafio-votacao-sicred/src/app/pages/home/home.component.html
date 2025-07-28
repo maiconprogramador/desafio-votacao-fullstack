@@ -1,10 +1,13 @@
-<h2>Criar Nova Pauta</h2>
-<form [formGroup]="form" (ngSubmit)="criar()">
-    <label>Título:</label>
-    <input formControlName="titulo" required />
-    <label>Descrição:</label>
-    <textarea formControlName="descricao" required></textarea>
-    <button type="submit" [disabled]="form.invalid">Criar</button>
-</form>
+<div class="container">
+    <div class="header">
+        <button matButton="filled" (click)="navigatePautasDispo()">Listar pautas</button>
+        <button matButton="filled">Criar pautas</button>
+        <button matButton="filled" (click)="abrirCriarSessao()">Abrir nova sessão</button>
+    </div>
+    <div class="sessoes">
+        <app-sessao-lista></app-sessao-lista>
+    </div>
+</div>
+
 
 <div *ngIf="mensagem">{{ mensagem }}</div>

@@ -1,3 +1,59 @@
+# 🗳️ Desafio Votação
+
+Sistema de votação cooperativa desenvolvido com Spring Boot (Java), Angular e PostgreSQL, hospedado gratuitamente com o Railway.
+
+## ✅ Funcionalidades
+
+
+- ✅ Criar pauta de votação
+- ✅ Abrir sessão para uma pauta
+- ✅ Registrar votos (sim/não) por CPF
+- ✅ Verificar se CPF está autorizado a votar (mock externo)
+- ✅ Apuração dos votos por sessão
+- ✅ API REST com Swagger
+- ✅ Integração com banco PostgreSQL na nuvem (Railway)
+- ✅ Front-end Angular
+
+---
+
+## 🧱 Tecnologias Utilizadas
+
+| Camada       | Tecnologia                    |
+|--------------|-------------------------------|
+| Back-end     | Java 21, Spring Boot 3        |
+| Front-end    | Angular                    |
+| Banco de Dados | PostgreSQL (Railway Cloud)  |
+| Deploy       | Railway (gratuito)            |
+| Build Tool   | Maven                         |
+| Versionamento| Git + GitHub                  |
+
+---
+
+## 🔧 Configuração do projeto
+
+### ▶️ Pré-requisito
+
+- Java 21+
+- Maven
+- Node.js + Angular CLI (para o front)
+
+---
+
+## 🚀 Como executar o back-end localmente
+
+```bash
+git clone https://github.com/maiconprogramador/desafio-votacao-fullstack.git
+cd desafio-votacao/desafio-back
+```
+# Executar com Maven o back
+./mvnw clean install
+./mvnw spring-boot:run
+
+# Executar com Node o front
+npm install
+npm run start
+
+
 # Votação
 
 ## Objetivo
