@@ -7,6 +7,9 @@ WORKDIR /app
 # Copia o projeto Maven e resolve dependências
 COPY . /app
 
+# Dá permissão de execução para o mvnw
+RUN chmod +x ./mvnw
+
 # Compila o projeto
 RUN ./mvnw clean package -DskipTests
 
