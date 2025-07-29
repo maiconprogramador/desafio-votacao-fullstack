@@ -14,7 +14,7 @@
   <ng-container *ngIf="modo === 'criar'">
     <mat-form-field class="full-width" appearance="fill">
       <mat-label>Selecionar Pauta(s)</mat-label>
-      <mat-select formControlName="pautaIds">
+      <mat-select formControlName="idPauta">
         <mat-option *ngFor="let pauta of pautasDisponiveis" [value]="pauta.id">
           {{ pauta.titulo }}
         </mat-option>

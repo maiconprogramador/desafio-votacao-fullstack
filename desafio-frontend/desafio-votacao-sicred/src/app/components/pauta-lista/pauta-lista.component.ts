@@ -3,6 +3,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { PautasService } from 'src/app/services/pautas.service';
 import { PautaDialogComponent } from '../pauta-dialog/pauta-dialog.component';
+import { Pauta } from 'src/app/shared/pauta.interface';
+
 
 @Component({
   selector: 'app-pauta-lista',
@@ -26,29 +28,21 @@ export class PautaListaComponent {
     });
   }
 
-  editar(idpauta: any): void {
+  editar(pauta: Pauta): void {
     const dialogRef = this.dialog.open(PautaDialogComponent, {
       width: '600px',
       data: {
-        idpauta
+        pauta
       }
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) this.carregarPautas();
+    dialogRef.afterClosed().subscribe((result: Boolean) => {
+      if (result) {
+        console.log('Pauta atualizada com sucesso!');
+        this.carregarPautas();
+      }
     });
 
   }
 
-  deletar(id: number): void {
-    // if (confirm('Tem certeza que deseja deletar esta sessão?')) {
-    //   this.sessaoService.deletar(id).subscribe(() => this.carregarSessoes());
-    // }
-  }
-
-  votar(sessao: any): void {
-    // if (confirm('Tem certeza que deseja deletar esta sessão?')) {
-    //   this.sessaoService.deletar(id).subscribe(() => this.carregarSessoes());
-    // }
-  }
 }

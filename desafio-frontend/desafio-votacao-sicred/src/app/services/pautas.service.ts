@@ -24,8 +24,8 @@ export class PautasService {
     return this.http.post<Pauta>(this.baseUrl, pauta);
   }
 
-  update(id: number, pauta: Pauta): Observable<Pauta> {
-    return this.http.put<Pauta>(`${this.baseUrl}/${id}`, pauta);
+  update(pauta: Pauta): Observable<Pauta> {
+    return this.http.put<Pauta>(`${this.baseUrl}/${pauta.id}`, pauta);
   }
 
   delete(id: number): Observable<void> {

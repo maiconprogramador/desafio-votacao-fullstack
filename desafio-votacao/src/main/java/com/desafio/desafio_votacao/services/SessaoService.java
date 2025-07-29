@@ -1,7 +1,9 @@
 package com.desafio.desafio_votacao.services;
 
 import com.desafio.desafio_votacao.dto.SessaoStatusDTO;
+import com.desafio.desafio_votacao.model.Pauta;
 import com.desafio.desafio_votacao.model.Sessao;
+import com.desafio.desafio_votacao.repositories.PautaRepository;
 import com.desafio.desafio_votacao.repositories.SessaoRepository;
 import org.springframework.stereotype.Service;
 
@@ -13,8 +15,11 @@ public class SessaoService {
 
     private final SessaoRepository sessaoRepo;
 
-    public SessaoService(SessaoRepository sessaoRepo) {
+    private final PautaRepository pautaRepo;
+
+    public SessaoService(SessaoRepository sessaoRepo,PautaRepository pautaRepo ) {
         this.sessaoRepo = sessaoRepo;
+        this.pautaRepo = pautaRepo;
     }
 
     public boolean sessaoAberta(Long sessaoId) {
@@ -44,11 +49,18 @@ public class SessaoService {
                 .map(sessaoExistente -> {
                     sessaoExistente.setInicio(novaSessao.getInicio());
                     sessaoExistente.setFim(novaSessao.getFim());
-                    sessaoExistente.setPauta(novaSessao.getPauta());
+
+                    Long idPauta = novaSessao.getPauta().getId();
+                    Pauta pauta = pautaRepo.findById(idPauta)
+                            .orElseThrow(() -> new IllegalStateException("Pauta não encontrada com ID: " + idPauta));
+
+                    sessaoExistente.setPauta(pauta);
+
                     return sessaoRepo.save(sessaoExistente);
                 })
                 .orElseThrow(() -> new IllegalStateException("Sessão não encontrada para atualização"));
     }
+
 
     public void deletarSessao(Long id) {
         if (!sessaoRepo.existsById(id)) {

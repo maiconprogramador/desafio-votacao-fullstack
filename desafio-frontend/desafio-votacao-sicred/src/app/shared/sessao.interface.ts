@@ -18,3 +18,9 @@ export interface SessaoStatus {
     },
     aberta: boolean;
 }
+
+export interface SessaoDTO {
+    idPauta: number;
+    inicio: string;
+    fim?: string;
+}

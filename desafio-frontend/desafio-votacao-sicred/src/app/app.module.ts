@@ -23,6 +23,9 @@ import { MatOptionModule } from '@angular/material/core';
 import { HttpClientModule } from '@angular/common/http';
 import { PautaListaComponent } from './components/pauta-lista/pauta-lista.component';
 import { PautaDialogComponent } from './components/pauta-dialog/pauta-dialog.component';
+import { DatePipe } from '@angular/common';
+import { VotarDialogComponent } from './components/votar-dialog/votar-dialog.component';
+import { MatRadioModule } from '@angular/material/radio';
 
 
 @NgModule({
@@ -35,7 +38,8 @@ import { PautaDialogComponent } from './components/pauta-dialog/pauta-dialog.com
     SessaoListaComponent,
     SessaoDialogComponent,
     PautaListaComponent,
-    PautaDialogComponent
+    PautaDialogComponent,
+    VotarDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -51,9 +55,10 @@ import { PautaDialogComponent } from './components/pauta-dialog/pauta-dialog.com
     MatInputModule,
     MatOptionModule,
     MatSelectModule,
-    HttpClientModule
+    HttpClientModule,
+    MatRadioModule
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -3,6 +3,8 @@ import { SessaoService } from 'src/app/services/sessao.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { SessaoDialogComponent } from '../sessao-dialog/sessao-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { VotoService } from 'src/app/services/voto.service';
+import { VotarDialogComponent } from '../votar-dialog/votar-dialog.component';
 
 @Component({
   selector: 'app-sessao-lista',
@@ -14,7 +16,7 @@ export class SessaoListaComponent implements OnInit {
   dataSource = new MatTableDataSource<any>();
   colunas: string[] = ['id', 'inicio', 'fim', 'status', 'acoes'];
 
-  constructor(private sessaoService: SessaoService, private dialog: MatDialog) { }
+  constructor(private sessaoService: SessaoService, private dialog: MatDialog, private votoService: VotoService) { }
 
   ngOnInit(): void {
     this.carregarSessoes();
@@ -32,7 +34,7 @@ export class SessaoListaComponent implements OnInit {
       width: '600px',
       data: {
         sessao,
-        pauta: sessao.pauta // passar para mostrar o nome
+        pauta: sessao.pauta
       }
     });
 
@@ -42,16 +44,31 @@ export class SessaoListaComponent implements OnInit {
 
   }
 
-  deletar(id: number): void {
-    // if (confirm('Tem certeza que deseja deletar esta sessão?')) {
-    //   this.sessaoService.deletar(id).subscribe(() => this.carregarSessoes());
-    // }
+  deletar(sessao: any): void {
+    if (confirm('Tem certeza que deseja deletar esta sessão?')) {
+      this.sessaoService.delete(sessao.sessao.id).subscribe(() => this.carregarSessoes());
+    }
   }
 
   votar(sessao : any): void {
-    // if (confirm('Tem certeza que deseja deletar esta sessão?')) {
-    //   this.sessaoService.deletar(id).subscribe(() => this.carregarSessoes());
-    // }
+    const dialogRef = this.dialog.open(VotarDialogComponent, {
+    width: '400px',
+    data: { sessao }
+  });
+
+  dialogRef.afterClosed().subscribe((result) => {
+    if (result) {
+      this.votoService.enviarVoto(result).subscribe({
+        next: () => {
+          alert('Voto registrado com sucesso!');
+        },
+        error: (err) => {
+          console.error('Erro ao registrar voto:', err);
+          alert('Erro ao registrar o voto.');
+        }
+      });
+    }
+  });
   }
 
 }

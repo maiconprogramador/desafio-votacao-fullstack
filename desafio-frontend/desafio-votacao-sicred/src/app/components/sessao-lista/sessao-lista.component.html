@@ -1,22 +1,19 @@
 <div class="mat-elevation-z8">
   <table mat-table [dataSource]="dataSource" class="full-width-table">
 
-    <!-- ID -->
     <ng-container matColumnDef="id">
       <th mat-header-cell *matHeaderCellDef> ID Pauta</th>
       <td mat-cell *matCellDef="let sessao"> {{sessao.sessao.id}} </td>
     </ng-container>
 
-    <!-- Início -->
     <ng-container matColumnDef="inicio">
       <th mat-header-cell *matHeaderCellDef> Início </th>
-      <td mat-cell *matCellDef="let sessao"> {{sessao.sessao.inicio | date:'short'}} </td>
+      <td mat-cell *matCellDef="let sessao"> {{sessao.sessao.inicio | date: 'dd/MM/yyyy HH:mm'}} </td>
     </ng-container>
 
-    <!-- Fim -->
     <ng-container matColumnDef="fim">
       <th mat-header-cell *matHeaderCellDef> Fim </th>
-      <td mat-cell *matCellDef="let sessao"> {{sessao.sessao.fim | date:'short'}} </td>
+      <td mat-cell *matCellDef="let sessao"> {{sessao.sessao.fim | date: 'dd/MM/yyyy HH:mm'}} </td>
     </ng-container>
 
     <ng-container matColumnDef="status">
@@ -24,18 +21,17 @@
       <td mat-cell *matCellDef="let sessao"> {{sessao.aberto ? "Fechada" : "Aberta"}} </td>
     </ng-container>
 
-    <!-- Ações -->
     <ng-container matColumnDef="acoes">
-      <th mat-header-cell *matHeaderCellDef> Ações </th>
+      <th mat-header-cell *matHeaderCellDef></th>
       <td mat-cell *matCellDef="let sessao">
-        <button mat-icon-button color="primary" (click)="editar(sessao)">
+        <button mat-icon-button color="primary" (click)="editar(sessao)" title="Editar sessão">
           <mat-icon>edit</mat-icon>
         </button>
-        <button mat-icon-button color="warn" (click)="deletar(sessao.id)">
+        <button mat-icon-button color="warn" (click)="deletar(sessao)" title="Deletar sessão">
           <mat-icon>delete</mat-icon>
         </button>
-        <button mat-icon-button color="warn" (click)="votar(sessao)">
-          <mat-icon>edit</mat-icon>
+        <button mat-icon-button color="warn" (click)="votar(sessao)" title="Votar na sessão">
+          <mat-icon>favorite</mat-icon>
         </button>
       </td>
     </ng-container>

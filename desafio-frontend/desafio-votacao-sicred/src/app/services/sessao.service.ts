@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Sessao, SessaoStatus } from '../shared/sessao.interface';
+import { Sessao, SessaoDTO, SessaoStatus } from '../shared/sessao.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +12,7 @@ export class SessaoService {
 
   constructor(private http: HttpClient) { }
 
-  abrirSessao(sessao: Sessao): Observable<Sessao> {
+  abrirSessao(sessao: any): Observable<Sessao> {
     return this.http.post<Sessao>(`${this.baseUrl}`, sessao);
   }
 
@@ -24,7 +24,11 @@ export class SessaoService {
     return this.http.get<SessaoStatus[]>(`${this.baseUrl}/listarTodasSessoesComStatus`);
   }
 
-  atualizar(sessao: Sessao): Observable<Sessao> {
-    return this.http.put<Sessao>(`${this.baseUrl}`, sessao);
+  atualizar(sessao: any): Observable<Sessao> {
+    return this.http.put<Sessao>(`${this.baseUrl}/${sessao.id}`, sessao);
+  }
+
+  delete(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.baseUrl}/${id}`);
   }
 }
