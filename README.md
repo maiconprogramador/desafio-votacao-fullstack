@@ -53,6 +53,21 @@ cd desafio-votacao/desafio-back
 npm install
 npm run start
 
+# Urls de ambiente na nuvem
+
+backend swagger: https://desafio-votacao-fullstack-8nwr.onrender.com/swagger-ui/index.html
+
+hospedado na RENDER https://render.com/
+
+frontend home: https://desafio-votacao-fullstack-hwpx5vo5a-maicons-projects-df603f84.vercel.app/
+
+hospedado na VERCEL https://vercel.com/
+
+Fluxo de navegação
+
+1- criar uma pauta
+2- abrir uma sessão para essa pauta com data de inicio e fim(opcional)
+3- votar na sessão usando o cpf de associado
 
 # Votação
 
