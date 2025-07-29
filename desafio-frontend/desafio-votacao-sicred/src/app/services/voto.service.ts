@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class VotoService {
 
-  private apiUrl = 'http://localhost:8080/api/v1/votos'; // ajuste se necessário
+  private apiUrl = 'https://desafio-votacao-fullstack-8nwr.onrender.com/api/v1/votos'; // ajuste se necessário
 
   constructor(private http: HttpClient) {}
 

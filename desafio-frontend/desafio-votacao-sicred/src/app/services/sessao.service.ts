@@ -8,7 +8,7 @@ import { Sessao, SessaoDTO, SessaoStatus } from '../shared/sessao.interface';
 })
 export class SessaoService {
 
-  private baseUrl = 'http://localhost:8080/api/v1/sessoes'; // Troque pela URL real do seu backend
+  private baseUrl = 'https://desafio-votacao-fullstack-8nwr.onrender.com/api/v1/sessoes'; // Troque pela URL real do seu backend
 
   constructor(private http: HttpClient) { }
 

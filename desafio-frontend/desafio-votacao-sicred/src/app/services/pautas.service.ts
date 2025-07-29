@@ -8,7 +8,7 @@ import { Pauta } from '../shared/pauta.interface';
 })
 export class PautasService {
 
-  private baseUrl = 'http://localhost:8080/api/v1/pautas'; // ajuste conforme sua API
+  private baseUrl = 'https://desafio-votacao-fullstack-8nwr.onrender.com/api/v1/pautas'; // ajuste conforme sua API
 
   constructor(private http: HttpClient) { }
 
