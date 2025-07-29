@@ -1,6 +1,10 @@
-<h2>Resultado da Votação</h2>
-<div *ngIf="resultado">
-    <h3>{{ resultado.titulo }}</h3>
-    <p>Votos Sim: {{ resultado.votosSim }}</p>
-    <p>Votos Não: {{ resultado.votosNao }}</p>
+<div class="container">
+    <h2>Resultado da Votação</h2>
+    <div *ngIf="resultado">
+        <h3>{{ resultado.pauta }}</h3>
+        <p>Votos Sim: {{ resultado.votosSim }}</p>
+        <p>Votos Não: {{ resultado.votosNao }}</p>
+        <p>Total de votos na sessão: {{ resultado.totalVotos }}</p>
+        <p>Resultado: {{ resultado.resultado }}</p>
+    </div>
 </div>

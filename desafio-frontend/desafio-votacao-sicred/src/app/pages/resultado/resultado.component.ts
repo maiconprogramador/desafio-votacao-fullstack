@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MockService } from 'src/app/services/mock.service';
+import { VotoService } from 'src/app/services/voto.service';
 
 @Component({
   selector: 'app-resultado',
@@ -10,10 +11,13 @@ import { MockService } from 'src/app/services/mock.service';
 export class ResultadoComponent {
   resultado: any;
 
-  constructor(private route: ActivatedRoute, private mock: MockService) {}
+  constructor(private route: ActivatedRoute, private votoService: VotoService, ) {}
 
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.mock.getResultado(id).subscribe(data => this.resultado = data);
+    this.votoService.buscarResultado(id).subscribe(data => {
+      console.log("resultado", data)
+      this.resultado = data
+    });
   }
 }

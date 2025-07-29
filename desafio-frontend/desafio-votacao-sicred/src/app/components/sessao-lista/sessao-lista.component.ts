@@ -5,6 +5,7 @@ import { SessaoDialogComponent } from '../sessao-dialog/sessao-dialog.component'
 import { MatDialog } from '@angular/material/dialog';
 import { VotoService } from 'src/app/services/voto.service';
 import { VotarDialogComponent } from '../votar-dialog/votar-dialog.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sessao-lista',
@@ -16,7 +17,7 @@ export class SessaoListaComponent implements OnInit {
   dataSource = new MatTableDataSource<any>();
   colunas: string[] = ['id', 'inicio', 'fim', 'status', 'acoes'];
 
-  constructor(private sessaoService: SessaoService, private dialog: MatDialog, private votoService: VotoService) { }
+  constructor(private sessaoService: SessaoService, private dialog: MatDialog, private votoService: VotoService, private router: Router) { }
 
   ngOnInit(): void {
     this.carregarSessoes();
@@ -48,6 +49,10 @@ export class SessaoListaComponent implements OnInit {
     if (confirm('Tem certeza que deseja deletar esta sessão?')) {
       this.sessaoService.delete(sessao.sessao.id).subscribe(() => this.carregarSessoes());
     }
+  }
+
+  resultado(sessao: any): void {
+    this.router.navigate(['resultado', sessao.sessao.id]);
   }
 
   votar(sessao : any): void {

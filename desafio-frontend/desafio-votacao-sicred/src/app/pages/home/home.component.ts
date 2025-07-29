@@ -12,7 +12,7 @@ import { Pauta } from 'src/app/shared/pauta.interface';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit{
+export class HomeComponent implements OnInit {
 
   form: FormGroup;
   mensagem = '';
@@ -24,7 +24,7 @@ export class HomeComponent implements OnInit{
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   abrirCriarSessao(): void {
     const dialogRef = this.dialog.open(SessaoDialogComponent, {
@@ -33,7 +33,7 @@ export class HomeComponent implements OnInit{
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if(result) {
+      if (result) {
         window.location.reload();
       }
     });
@@ -44,17 +44,17 @@ export class HomeComponent implements OnInit{
   }
 
   novaPauta(): void {
-  const dialogRef = this.dialog.open(PautaDialogComponent, {
-    width: '500px',
-    data: {} as Pauta 
-  });
+    const dialogRef = this.dialog.open(PautaDialogComponent, {
+      width: '500px',
+      data: {} as Pauta
+    });
 
-  dialogRef.afterClosed().subscribe((result: Boolean) => {
-    if (result) {
+    dialogRef.afterClosed().subscribe((result: Boolean) => {
+      if (result) {
         console.log('Pauta criado com sucesso!');
         this.navigatePautasDispo();
       }
-  });
-}
+    });
+  }
 
 }
